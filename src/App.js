@@ -26,7 +26,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Quick Noise</h1>
-        <button onClick={() => toggleNoise()}>Toggle noise</button>
+        <button className="App-button" onClick={() => toggleNoise()}>Toggle noise</button>
       </header>
     </div>
   );
