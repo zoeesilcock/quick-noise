@@ -8,11 +8,15 @@
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-scripts": "3.2.0",
+    "socket.io": "2.3.0",
     "tone": "13.8.25"
+  },
+  "devDependencies": {
+    "nodemon": "1.19.4"
   },
   "scripts": {
     "start": "react-scripts start",
-    "start-api": "node server.js",
+    "start-api": "nodemon server.js",
     "start-production": "NODE_ENV=production node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
