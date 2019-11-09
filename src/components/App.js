@@ -3,7 +3,7 @@ import Tone from 'tone';
 import io from 'socket.io-client';
 
 import './App.css';
-import RemoteToggle from './components/RemoteToggle';
+import RemoteToggle from './RemoteToggle';
 
 class App extends React.Component {
   constructor(props) {
