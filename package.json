@@ -12,14 +12,15 @@
     "tone": "13.8.25"
   },
   "devDependencies": {
-    "nodemon": "1.19.4"
+    "nodemon": "1.19.4",
+    "supertest": "4.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
-    "start-api": "nodemon server.js",
-    "start-production": "NODE_ENV=production node server.js",
+    "start-api": "nodemon server",
+    "start-production": "NODE_ENV=production node server",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --roots './server' './src' --testMatch '**/*.test.js'",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
