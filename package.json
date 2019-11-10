@@ -6,8 +6,8 @@
   "scripts": {
     "start": "react-scripts start",
     "start-api": "nodemon server",
-    "start-production": "NODE_ENV=production node server",
-    "build": "react-scripts build",
+    "start-production": "NODE_ENV=production PORT=80 node server",
+    "build": "REACT_APP_API_PORT=80 react-scripts build",
     "test": "react-scripts test --roots './server' './src' --testMatch '**/*.test.js'",
     "eject": "react-scripts eject"
   },

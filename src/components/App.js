@@ -12,7 +12,8 @@ class App extends React.Component {
     this.state = { isRemote: true };
     this.noise = null;
 
-    this.socket = io(`${window.location.hostname}:5000`);
+    const port = process.env.REACT_APP_API_PORT || 5000;
+    this.socket = io(`${window.location.hostname}:${port}`);
     this.socket.on('toggle noise', () => {
       if (!this.state.isRemote) {
         this.togglePlayer();
