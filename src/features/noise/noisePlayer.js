@@ -6,7 +6,7 @@ import noiseSocket from './noiseSocket';
 class NoisePlayer {
   // Must be called from a user event.
   initNoise() {
-    this.noise = new Tone.Noise("brown").toMaster();
+    this.noise = new Tone.Noise('brown').toMaster();
     this.noise._playbackRate = 0.1;
   }
 

@@ -10,8 +10,7 @@ const appModeSlice = createSlice({
   initialState: AppModes.REMOTE,
   reducers: {
     toggleMode(state) {
-      const newAppMode = state === AppModes.PLAYER ? AppModes.REMOTE : AppModes.PLAYER;
-      return newAppMode;
+      return state === AppModes.PLAYER ? AppModes.REMOTE : AppModes.PLAYER;
     },
   }
 });

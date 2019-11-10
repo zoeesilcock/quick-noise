@@ -9,6 +9,7 @@
     "start-production": "NODE_ENV=production PORT=80 node server",
     "build": "REACT_APP_API_PORT=80 react-scripts build",
     "test": "react-scripts test --roots './server' './src' --testMatch '**/*.test.js'",
+    "test:coverage": "CI=true react-scripts test --roots './server' './src' --testMatch '**/*.test.js' --coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -26,7 +27,17 @@
       "last 1 safari version"
     ]
   },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "server/**/*.{js,jsx,ts,tsx}",
+      "!<rootDir>/node_modules/"
+    ],
+    "coverageReporters": ["text", "html"]
+  },
   "dependencies": {
+    "@testing-library/jest-dom": "4.2.3",
+    "@testing-library/react": "9.3.2",
     "body-parser": "1.19.0",
     "express": "4.17.1",
     "react": "^16.11.0",
