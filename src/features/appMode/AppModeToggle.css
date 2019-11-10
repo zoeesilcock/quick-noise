@@ -1,0 +1,41 @@
+.AppModeToggle-body {
+  color: #666;
+  cursor: pointer;
+}
+
+.AppModeToggle-remote, .AppModeToggle-player {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 24px;
+  border: 1px solid #999;
+  margin: 0 20px;
+}
+
+.AppModeToggle-box {
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: #aaa;
+}
+
+.AppModeToggle-player .AppModeToggle-box {
+  right: 32px;
+}
+
+.AppModeToggle-remote .AppModeToggle-box {
+  left: 32px;
+}
+
+.AppModeToggle-selected {
+  color: #fff;
+}
+
+@media screen and (prefers-color-scheme: light) {
+  .AppModeToggle-selected {
+    color: #000;
+  }
+}
