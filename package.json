@@ -10,7 +10,13 @@
     "build": "REACT_APP_API_PORT=80 react-scripts build",
     "test": "react-scripts test --roots './server' './src' --testMatch '**/*.test.js'",
     "test:coverage": "CI=true react-scripts test --roots './server' './src' --testMatch '**/*.test.js' --coverage",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "docker:build": "docker-compose -f docker-compose-development.yml build",
+    "docker:start": "docker-compose -f docker-compose-development.yml up",
+    "docker:stop": "docker-compose -f docker-compose-development.yml stop",
+    "docker:build:prod": "docker-compose build",
+    "docker:start:prod": "docker-compose up",
+    "docker:stop:prod": "docker-compose stop"
   },
   "eslintConfig": {
     "extends": "react-app"

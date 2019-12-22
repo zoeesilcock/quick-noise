@@ -11,6 +11,11 @@ npm start
 npm run start-api
 ```
 
+Alternatively you can use Docker:
+```
+docker-compose -f docker-compose-development.yml up
+```
+
 Visit http://localhost:3000
 
 
