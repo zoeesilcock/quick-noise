@@ -1,23 +1,14 @@
-const mariadb = require('mariadb');
+const Sequelize = require('sequelize');
 
-let connection = null;
-
-mariadb.createConnection({ host: process.env.DB_HOST, user: process.env.DB_USER, password: process.env.DB_PASS })
-.then(conn => {
-  console.log('DB connection established!');
-  connection = conn;
-
-  conn.query("select 1", [2])
-    .then(rows => {
-      console.log(rows); // [{ "1": 1 }]
-      conn.end();
-    })
-    .catch(err => {
-      console.log('DB query error', err);
-    });
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
+  host: process.env.DB_HOST,
+  dialect: 'mariadb'
+}).authenticate()
+.then(() => {
+  console.log('Connection to database has been established successfully.');
 })
 .catch(err => {
-  console.log('DB connection error', err);
+  console.error('Unable to connect to the database:', err);
 });
 
-module.exports = connection;
+module.exports = sequelize;

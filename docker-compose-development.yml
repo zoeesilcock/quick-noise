@@ -39,6 +39,7 @@ services:
       PORT: 5000
       NODE_ENV: development
       DB_HOST: 'db-dev'
+      DB_NAME: 'quicknoise_dev'
       DB_USER: 'root'
       DB_PASS: 'example'
 
@@ -47,3 +48,6 @@ services:
     container_name: quicknoise-db
     environment:
       MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: quicknoise_dev
+    ports:
+      - "3306:3306"
