@@ -5,18 +5,21 @@ import { createPlayer } from '../player/playerSlice';
 
 const addRemoteSlice = createSlice({
   name: 'addRemote',
-  initialState: { newRemoteCode: null, fetchingCode: false },
+  initialState: { newRemoteCode: null, fetchingCode: false, showingCode: false },
   reducers: {
     setIsFetching(state, action) {
       return Object.assign({}, state, { fetchingCode: action.payload });
     },
     setRemoteCode(state, action) {
-      return Object.assign({}, state, { newRemoteCode: action.payload, fetchingCode: false });
+      return Object.assign({}, state, { newRemoteCode: action.payload, fetchingCode: false, showingCode: true });
     },
+    hideCode(state) {
+      return Object.assign({}, state, { showingCode: false });
+    }
   }
 });
 
-export const { setIsFetching, setRemoteCode } = addRemoteSlice.actions;
+export const { setIsFetching, setRemoteCode, hideCode } = addRemoteSlice.actions;
 
 export function addRemote() {
   return (dispatch, getState) => {

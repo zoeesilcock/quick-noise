@@ -7,7 +7,10 @@ const playerSlice = createSlice({
   initialState: null,
   reducers: {
     setPlayer(state, action) {
-      return Object.assign({}, state, { id: action.payload.id, data: action.payload });
+      return Object.assign({}, state, {
+        id: action.payload ? action.payload.id : null,
+        data: action.payload
+      });
     },
     setFetched(state, action) {
       return Object.assign({}, state, { fetched: action.payload });

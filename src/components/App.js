@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import Modal from 'react-modal';
 
 import './App.css';
 import { fetchPlayer } from '../features/player/playerSlice';
@@ -7,6 +8,8 @@ import { fetchPlayer } from '../features/player/playerSlice';
 import AppModeContainer from '../features/appMode/AppModeContainer';
 import NoiseToggleContainer from '../features/noise/NoiseToggleContainer';
 import AddRemoteContainer from '../features/addRemote/AddRemoteContainer';
+
+Modal.setAppElement('#root');
 
 const App = () => {
   const dispatch = useDispatch();
