@@ -5,10 +5,20 @@ import storage from 'redux-persist/lib/storage';
 
 import appModeReducer from './features/appMode/appModeSlice';
 import noiseReducer from './features/noise/noiseSlice';
+import addRemoteReducer from './features/addRemote/addRemoteSlice';
+import playerReducer from './features/player/playerSlice';
+
+const playerPersistConfig = {
+  key: 'player',
+  storage,
+  whitelist: ['id']
+};
 
 export const reducer = combineReducers({
   appMode: appModeReducer,
   noise: noiseReducer,
+  addRemote: addRemoteReducer,
+  player: persistReducer(playerPersistConfig, playerReducer),
 });
 
 const persistConfig = {
