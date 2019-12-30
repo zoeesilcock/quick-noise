@@ -18,6 +18,10 @@ button:disabled {
   color: #666;
 }
 
+input {
+  font-size: 24px;
+}
+
 .ReactModal__Overlay {
   background-color: rgba(0, 0, 0, 0.75)!important;
 }

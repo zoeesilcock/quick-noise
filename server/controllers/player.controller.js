@@ -28,6 +28,13 @@ const getNewRemoteCode = function(req, res) {
   });
 }
 
+const connectToPlayer = function(req, res) {
+  models.Player.findOne({ where: { new_remote_code: req.params.code }, attributes: ['id']})
+  .then(player => {
+    return res.json({ playerId: player.id });
+  });
+}
+
 const updatePlayer = function(req, res) {
   console.log('Update player!');
 };
@@ -36,3 +43,4 @@ exports.getPlayer = getPlayer;
 exports.createPlayer = createPlayer;
 exports.updatePlayer = updatePlayer;
 exports.getNewRemoteCode = getNewRemoteCode;
+exports.connectToPlayer = connectToPlayer;

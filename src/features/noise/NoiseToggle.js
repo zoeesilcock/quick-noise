@@ -13,7 +13,11 @@ class NoiseToggle extends React.Component {
 
     return (
       <div>
-        <button className={buttonClass} onClick={this.handleClick}>
+        <button
+          className={buttonClass}
+          onClick={this.handleClick}
+          disabled={!this.props.allowsPlaying}
+        >
           Toggle noise
         </button>
       </div>
@@ -23,6 +27,7 @@ class NoiseToggle extends React.Component {
 
 NoiseToggle.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
+  allowsPlaying: PropTypes.bool.isRequired,
   toggleNoise: PropTypes.func.isRequired,
 }
 

@@ -10,11 +10,11 @@ class NoisePlayer {
     this.noise._playbackRate = 0.1;
   }
 
-  toggleNoise(isPlaying, appMode) {
+  toggleNoise(isPlaying, appMode, playerId) {
     if (appMode === AppModes.PLAYER) {
       this.togglePlayer(isPlaying);
     } else {
-      this.toggleRemote();
+      this.toggleRemote(playerId);
     }
   }
 
@@ -30,8 +30,8 @@ class NoisePlayer {
     }
   }
 
-  toggleRemote() {
-    noiseSocket.emit('toggle noise');
+  toggleRemote(playerId) {
+    noiseSocket.emit('toggle noise', playerId);
   }
 }
 

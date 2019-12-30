@@ -14,9 +14,9 @@ const noiseSlice = createSlice({
 
 export const toggleNoise = () => {
   return (dispatch, getState) => {
-    const { appMode, noise } = getState();
+    const { appMode, noise, remote } = getState();
 
-    noisePlayer.toggleNoise(noise.isPlaying, appMode);
+    noisePlayer.toggleNoise(noise.isPlaying, appMode, remote.playerId);
     dispatch(setIsPlaying(!noise.isPlaying));
   }
 };

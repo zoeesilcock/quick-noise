@@ -7,11 +7,22 @@ import appModeReducer from './features/appMode/appModeSlice';
 import noiseReducer from './features/noise/noiseSlice';
 import addRemoteReducer from './features/addRemote/addRemoteSlice';
 import playerReducer from './features/player/playerSlice';
+import remoteReducer from './features/remote/remoteSlice';
 
+const rootPersistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['appMode'],
+}
 const playerPersistConfig = {
   key: 'player',
   storage,
   whitelist: ['id']
+};
+const remotePersistConfig = {
+  key: 'remote',
+  storage,
+  whitelist: ['playerId']
 };
 
 export const reducer = combineReducers({
@@ -19,14 +30,9 @@ export const reducer = combineReducers({
   noise: noiseReducer,
   addRemote: addRemoteReducer,
   player: persistReducer(playerPersistConfig, playerReducer),
+  remote: persistReducer(remotePersistConfig, remoteReducer),
 });
-
-const persistConfig = {
-  key: 'root',
-  storage,
-  whitelist: ['appMode'],
-}
-const persistedReducer = persistReducer(persistConfig, reducer);
+const persistedReducer = persistReducer(rootPersistConfig, reducer);
 
 const middleware = [...getDefaultMiddleware({
   serializableCheck: {

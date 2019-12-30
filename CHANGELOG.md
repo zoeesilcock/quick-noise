@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 * The client now saves the player/remote setting in the browser.
 * The noise toggle button now shows an animation when the noise is running.
-
+* Added the flow for authenticating a remote with a specific player.
 
 ## [0.1.0] - 2019-11-02
 
