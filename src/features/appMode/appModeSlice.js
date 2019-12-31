@@ -12,9 +12,12 @@ const appModeSlice = createSlice({
     toggleMode(state) {
       return state === AppModes.PLAYER ? AppModes.REMOTE : AppModes.PLAYER;
     },
+    setMode(state, action) {
+      return action.payload;
+    }
   }
 });
 
-export const { toggleMode } = appModeSlice.actions;
+export const { toggleMode, setMode } = appModeSlice.actions;
 
 export default appModeSlice.reducer;

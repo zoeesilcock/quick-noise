@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
-import { toggleMode } from './appModeSlice';
+import { setMode } from './appModeSlice';
 import AppModeToggle from './AppModeToggle';
 
 const mapStateToProps = state => ({
   appMode: state.appMode,
 });
 
-const mapDispatchToProps = { toggleMode };
+const mapDispatchToProps = { setMode };
 
 export default connect(
   mapStateToProps,
