@@ -22,12 +22,12 @@ const App = () => {
 
   useEffect(() => {
     // Fetch own player.
-    if (player && player.id && !player.fetched) {
+    if (player && player.id && !player.fetching && !player.fetched) {
       dispatch(fetchPlayer(player.id));
     }
 
     // Fetch player used by remote.
-    if (remote && remote.playerId && !player.fetched) {
+    if (remote && remote.playerId && !player.fetching && !player.fetched) {
       dispatch(fetchPlayer(remote.playerId));
     }
 
