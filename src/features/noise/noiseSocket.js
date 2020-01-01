@@ -5,14 +5,20 @@ import { AppModes } from '../appMode/appModeSlice';
 import { toggleNoise } from './noiseSlice';
 
 const port = process.env.REACT_APP_API_PORT || 5000;
-const socket = io(`${window.location.hostname}:${port}`);
 
-socket.on('toggle noise', (playerId) => {
-  const { appMode, player } = store.getState();
+class NoiseSocket {
+  constructor(playerId) {
+    this.playerId = playerId;
+    this.socket = io(`${window.location.hostname}:${port}?playerId=${playerId}`);
 
-  if (appMode === AppModes.PLAYER && player && player.id === playerId) {
-    store.dispatch(toggleNoise());
+    this.socket.on('toggle noise', () => {
+      const { appMode } = store.getState();
+
+      if (appMode === AppModes.PLAYER) {
+        store.dispatch(toggleNoise());
+      }
+    });
   }
-});
+}
 
-export default socket;
+export default NoiseSocket;

@@ -1,13 +1,23 @@
 import Tone from 'tone';
 
 import { AppModes } from '../appMode/appModeSlice';
-import noiseSocket from './noiseSocket';
+import NoiseSocket from './NoiseSocket';
 
 class NoisePlayer {
+  constructor(playerId) {
+    this.initNoiseSocket(playerId);
+  }
+
   // Must be called from a user event.
   initNoise() {
     this.noise = new Tone.Noise('brown').toMaster();
     this.noise._playbackRate = 0.1;
+  }
+
+  initNoiseSocket(playerId) {
+    if (!this.noiseSocket) {
+      this.noiseSocket = new NoiseSocket(playerId);
+    }
   }
 
   toggleNoise(isPlaying, appMode, playerId) {
@@ -31,10 +41,9 @@ class NoisePlayer {
   }
 
   toggleRemote(playerId) {
-    noiseSocket.emit('toggle noise', playerId);
+    this.initNoiseSocket(playerId);
+    this.noiseSocket.socket.emit('toggle noise');
   }
 }
 
-const noisePlayer = new NoisePlayer();
-
-export default noisePlayer;
+export default NoisePlayer;
