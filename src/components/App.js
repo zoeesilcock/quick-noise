@@ -21,8 +21,14 @@ const App = () => {
   const noisePlayerInitialized = useSelector((state) => state.noise.noisePlayerInitialized);
 
   useEffect(() => {
+    // Fetch own player.
     if (player && player.id && !player.fetched) {
       dispatch(fetchPlayer(player.id));
+    }
+
+    // Fetch player used by remote.
+    if (remote && remote.playerId && !player.fetched) {
+      dispatch(fetchPlayer(remote.playerId));
     }
 
     // Initialize noise player based on player.

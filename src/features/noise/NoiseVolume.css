@@ -1,0 +1,36 @@
+.NoiseVolume-slider {
+  appearance: none;
+  outline: none;
+  height: 15px;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.NoiseVolume-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 40px;
+  height: 40px;
+  background: #333;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+
+.NoiseVolume-slider::-moz-range-thumb {
+  width: 40px;
+  height: 40px;
+  background: #333;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+
+@media screen and (prefers-color-scheme: light) {
+  .NoiseVolume-slider::-webkit-slider-thumb {
+    background: #fff;
+    border: 1px solid #000;
+  }
+
+  .NoiseVolume-slider::-moz-range-thumb {
+    background: #fff;
+    border: 1px solid #000;
+  }
+}

@@ -1,12 +1,12 @@
 import React from 'react';
 
-import NoiseToggleContainer from '../features/noise/NoiseToggleContainer';
+import NoiseContainer from '../features/noise/NoiseContainer';
 
 const HomePage = () => {
   return (
     <div>
       <h1>Quick Noise</h1>
-      <NoiseToggleContainer />
+      <NoiseContainer />
     </div>
   )
 }

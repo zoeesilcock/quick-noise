@@ -4,14 +4,17 @@ import { AppModes } from '../appMode/appModeSlice';
 import NoiseSocket from './NoiseSocket';
 
 class NoisePlayer {
-  constructor(playerId) {
+  constructor(playerId, volume) {
     this.initNoiseSocket(playerId);
+    this.setPlayerVolume(volume);
   }
 
   // Must be called from a user event.
   initNoise() {
-    this.noise = new Tone.Noise('brown').toMaster();
-    this.noise._playbackRate = 0.1;
+    if (!this.noise) {
+      this.noise = new Tone.Noise('brown').toMaster();
+      this.noise._playbackRate = 0.1;
+    }
   }
 
   initNoiseSocket(playerId) {
@@ -29,9 +32,7 @@ class NoisePlayer {
   }
 
   togglePlayer(isPlaying) {
-    if (!this.noise) {
-      this.initNoise();
-    }
+    this.initNoise();
 
     if (isPlaying) {
       this.noise.stop();
@@ -42,7 +43,28 @@ class NoisePlayer {
 
   toggleRemote(playerId) {
     this.initNoiseSocket(playerId);
+
     this.noiseSocket.socket.emit('toggle noise');
+  }
+
+  setVolume(volume, appMode, playerId) {
+    if (appMode === AppModes.PLAYER) {
+      this.setPlayerVolume(volume);
+    }
+
+    this.setRemoteVolume(volume, playerId);
+  }
+
+  setPlayerVolume(volume) {
+    this.initNoise();
+
+    this.noise.volume.value = volume;
+  }
+
+  setRemoteVolume(volume, playerId) {
+    this.initNoiseSocket(playerId);
+
+    this.noiseSocket.socket.emit('set volume', volume);
   }
 }
 
