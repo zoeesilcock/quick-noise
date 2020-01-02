@@ -16,13 +16,26 @@ it('renders without crashing', () => {
   ReactDOM.unmountComponentAtNode(div);
 });
 
-it('calls the setMode prop when clicked', () => {
+it('calls the setMode prop when player option is clicked', () => {
   const setMode = jest.fn();
   const { getByLabelText  } = render(
     <AppModeToggle {...Object.assign({}, props, { setMode })} />
   );
 
-  const toggle = getByLabelText('Player');
-  fireEvent.click(toggle);
+  const playerRadio = getByLabelText('Player');
+  fireEvent.click(playerRadio);
+
+  expect(setMode).toHaveBeenCalledTimes(1);
+});
+
+it('calls the setMode prop when remote option is clicked', () => {
+  const setMode = jest.fn();
+  const { getByLabelText  } = render(
+    <AppModeToggle {...Object.assign({}, props, { appMode: AppModes.PLAYER, setMode })} />
+  );
+
+  const remoteRadio = getByLabelText('Remote');
+  fireEvent.click(remoteRadio);
+
   expect(setMode).toHaveBeenCalledTimes(1);
 });
