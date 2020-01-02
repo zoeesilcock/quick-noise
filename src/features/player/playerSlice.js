@@ -31,7 +31,10 @@ export function fetchPlayer(playerId) {
       dispatch(playerSlice.actions.setPlayer(res.data.player));
       dispatch(setFetched(true));
       dispatch(setFetching(false));
-      dispatch(setNoiseVolume(res.data.player.volume));
+
+      if (res.data.player !== null) {
+        dispatch(setNoiseVolume(res.data.player.volume));
+      }
     });
   };
 }

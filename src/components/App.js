@@ -12,7 +12,9 @@ import { initNoisePlayer } from '../features/noise/noiseSlice';
 import HomePage from '../pages/HomePage';
 import SettingsPage from '../pages/SettingsPage';
 
-Modal.setAppElement('#root');
+if (process.env.NODE_ENV !== 'test') {
+  Modal.setAppElement('#root');
+}
 
 const App = () => {
   const dispatch = useDispatch();

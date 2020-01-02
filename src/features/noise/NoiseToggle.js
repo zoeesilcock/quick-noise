@@ -12,15 +12,13 @@ class NoiseToggle extends React.Component {
     const buttonClass = 'NoiseToggle-button' + (this.props.isPlaying ? ' NoiseToggle-playing' : '');
 
     return (
-      <div>
-        <button
-          className={buttonClass}
-          onClick={this.handleClick}
-          disabled={!this.props.allowsPlaying}
-        >
-          Toggle noise
-        </button>
-      </div>
+      <button
+        className={buttonClass}
+        onClick={this.handleClick}
+        disabled={!this.props.allowsPlaying}
+      >
+        Toggle noise
+      </button>
     );
   }
 }

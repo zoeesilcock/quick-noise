@@ -7,7 +7,7 @@ import { AppModes } from '../appModeSlice';
 
 const props = {
   appMode: AppModes.REMOTE,
-  toggleMode: () => {},
+  setMode: () => {},
 };
 
 it('renders without crashing', () => {
@@ -16,13 +16,13 @@ it('renders without crashing', () => {
   ReactDOM.unmountComponentAtNode(div);
 });
 
-it('calls the toggleMode prop when clicked', () => {
-  const toggleMode = jest.fn();
-  const { container  } = render(
-    <AppModeToggle toggleMode={toggleMode} appMode={props.appMode} />
+it('calls the setMode prop when clicked', () => {
+  const setMode = jest.fn();
+  const { getByLabelText  } = render(
+    <AppModeToggle {...Object.assign({}, props, { setMode })} />
   );
 
-  const toggle = container.firstChild;
+  const toggle = getByLabelText('Player');
   fireEvent.click(toggle);
-  expect(toggleMode).toHaveBeenCalledTimes(1);
+  expect(setMode).toHaveBeenCalledTimes(1);
 });

@@ -6,6 +6,7 @@ import NoiseToggle from '../NoiseToggle';
 
 const props = {
   isPlaying: false,
+  allowsPlaying: true,
   toggleNoise: () => {},
 };
 
@@ -18,7 +19,7 @@ it('renders without crashing', () => {
 it('calls the toggleNoise prop when clicked', () => {
   const toggleNoise = jest.fn();
   const { getByText } = render(
-    <NoiseToggle toggleNoise={toggleNoise} isPlaying={false} />
+    <NoiseToggle {...Object.assign({}, props, { toggleNoise })} />
   );
 
   const button = getByText('Toggle noise');
