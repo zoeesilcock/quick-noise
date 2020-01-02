@@ -3,7 +3,7 @@ import Tone from 'tone';
 import { AppModes } from '../appMode/appModeSlice';
 import NoiseSocket from './NoiseSocket';
 
-class NoisePlayer {
+export default class NoisePlayer {
   constructor(playerId, volume) {
     this.initNoiseSocket(playerId);
     this.setPlayerVolume(volume);
@@ -67,5 +67,3 @@ class NoisePlayer {
     this.noiseSocket.socket.emit('set volume', volume);
   }
 }
-
-export default NoisePlayer;

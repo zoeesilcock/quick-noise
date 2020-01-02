@@ -10,16 +10,14 @@ class NoiseVolume extends React.Component {
 
   render() {
     return (
-      <div>
-        <input
-          className="NoiseVolume-slider"
-          type="range"
-          min="-30"
-          max="0"
-          value={this.props.volume}
-          onChange={this.handleChange}
-        />
-      </div>
+      <input
+        className="NoiseVolume-slider"
+        type="range"
+        min="-30"
+        max="0"
+        value={this.props.volume}
+        onChange={this.handleChange}
+      />
     );
   }
 }
