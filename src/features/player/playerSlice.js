@@ -22,7 +22,7 @@ const playerSlice = createSlice({
   }
 });
 
-export const { setFetched, setFetching } = playerSlice.actions;
+export const { setPlayer, setFetched, setFetching } = playerSlice.actions;
 
 export function fetchPlayer(playerId) {
   return (dispatch) => {
