@@ -12,9 +12,8 @@ import { initNoisePlayer } from '../features/noise/noiseSlice';
 import HomePage from '../pages/HomePage';
 import SettingsPage from '../pages/SettingsPage';
 
-if (process.env.NODE_ENV !== 'test') {
-  Modal.setAppElement('#root');
-}
+/* istanbul ignore next */
+if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
 const App = () => {
   const dispatch = useDispatch();
@@ -23,23 +22,21 @@ const App = () => {
   const noisePlayerInitialized = useSelector((state) => state.noise.noisePlayerInitialized);
 
   useEffect(() => {
-    // Fetch own player.
     if (player && player.id && !player.fetching && !player.fetched) {
+      // Fetch own player.
       dispatch(fetchPlayer(player.id));
     }
 
-    // Fetch player used by remote.
-    if (remote && remote.playerId && !player.fetching && !player.fetched) {
+    if (remote && remote.playerId && (!player || (!player.fetching && !player.fetched))) {
+      // Fetch player used by remote.
       dispatch(fetchPlayer(remote.playerId));
     }
 
-    // Initialize noise player based on player.
     if (player && player.id && !noisePlayerInitialized) {
+      // Initialize noise player based on player.
       dispatch(initNoisePlayer(player.id));
-    }
-
-    // Initialize noise player based on remote.
-    if (remote && remote.playerId && !noisePlayerInitialized) {
+    } else if (remote && remote.playerId && !noisePlayerInitialized) {
+      // Initialize noise player based on remote.
       dispatch(initNoisePlayer(remote.playerId));
     }
   });
