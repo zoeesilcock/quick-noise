@@ -23,9 +23,10 @@ export const { setIsFetching, setRemoteCode, hideCode } = addRemoteSlice.actions
 
 export function addRemote() {
   return (dispatch, getState) => {
-    dispatch(addRemoteSlice.actions.setIsFetching(true));
+    const player = getState().player;
+    dispatch(setIsFetching(true));
 
-    if (!getState().player.data) {
+    if (!player || !player.data) {
       dispatch(createPlayer());
     }
 
