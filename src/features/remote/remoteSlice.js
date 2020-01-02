@@ -17,14 +17,14 @@ const addRemoteSlice = createSlice({
 export const { setPlayerId, setConnectShow } = addRemoteSlice.actions;
 
 export function showConnect() {
-  return addRemoteSlice.actions.setConnectShow(true);
+  return setConnectShow(true);
 }
 
 export function connectRemote(code) {
   return (dispatch) => {
     return axios.get(`/api/player/connect/${code}`).then(res => {
       dispatch(setPlayerId(res.data.playerId));
-      return dispatch(addRemoteSlice.actions.setConnectShow(false));
+      return dispatch(setConnectShow(false));
     });
   };
 }

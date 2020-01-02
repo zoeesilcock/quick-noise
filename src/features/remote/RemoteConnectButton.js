@@ -8,11 +8,9 @@ class RemoteConnectButton extends React.Component {
 
   render() {
     return (
-      <div>
-        <button onClick={this.handleClick}>
-          Connect to player
-        </button>
-      </div>
+      <button onClick={this.handleClick}>
+        Connect to player
+      </button>
     );
   }
 }

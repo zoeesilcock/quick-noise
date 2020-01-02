@@ -20,6 +20,9 @@ it('should update the state when the setPlayer action is triggered', () => {
 
   expect(playerReducer(null, setPlayer(player)))
     .toEqual({ id: player.id, data: player });
+
+  expect(playerReducer(null, setPlayer(false)))
+    .toEqual({ id: null, data: null });
 });
 
 it('should update the state when the setFetched action is triggered', () => {
@@ -48,6 +51,24 @@ it('should fetch player from API when the fetchPlayer action is triggered', asyn
   ];
 
   mockRequest.onGet(`/api/player/${playerId}`).reply(200, { player });
+
+  await store.dispatch(fetchPlayer(playerId));
+  const actions = store.getActions();
+
+  expect(actions).toEqual(expectedActions);
+});
+
+it('should handle empty response when fetchPlayer action is triggered', async () => {
+  const store = mockStore({});
+  const playerId = 'fake-player-id';
+  const expectedActions = [
+    { payload: true, type: 'player/setFetching' },
+    { payload: null, type: 'player/setPlayer' },
+    { payload: true, type: 'player/setFetched' },
+    { payload: false, type: 'player/setFetching' },
+  ];
+
+  mockRequest.onGet(`/api/player/${playerId}`).reply(200, { player: null });
 
   await store.dispatch(fetchPlayer(playerId));
   const actions = store.getActions();

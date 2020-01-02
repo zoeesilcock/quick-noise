@@ -3,6 +3,14 @@ import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 
 class RemoteConnectModal extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      code: '',
+    };
+  }
+
   handleClose = () => {
     this.props.setConnectShow(false);
   }
@@ -39,7 +47,7 @@ class RemoteConnectModal extends React.Component {
           <h1>Connect to player</h1>
           <div>Please enter the code shown on the player device:</div>
           <br />
-          <input type="text" size="8" onChange={this.handleCodeChange} />
+          <input type="text" size="8" onChange={this.handleCodeChange} value={this.state.code} placeholder="code" />
           <br />
           <br />
           <button onClick={this.handleClose}>Close</button>{' '}

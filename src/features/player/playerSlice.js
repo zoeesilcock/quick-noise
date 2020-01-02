@@ -10,7 +10,7 @@ const playerSlice = createSlice({
     setPlayer(state, action) {
       return Object.assign({}, state, {
         id: action.payload ? action.payload.id : null,
-        data: action.payload
+        data: action.payload ? action.payload : null
       });
     },
     setFetching(state, action) {
@@ -28,7 +28,7 @@ export function fetchPlayer(playerId) {
   return (dispatch) => {
     dispatch(setFetching(true));
     return axios.get(`/api/player/${playerId}`).then(res => {
-      dispatch(playerSlice.actions.setPlayer(res.data.player));
+      dispatch(setPlayer(res.data.player));
       dispatch(setFetched(true));
       dispatch(setFetching(false));
 
@@ -42,7 +42,7 @@ export function fetchPlayer(playerId) {
 export function createPlayer() {
   return (dispatch) => {
     return axios.post('/api/player').then(res => {
-      dispatch(playerSlice.actions.setPlayer(res.data.player));
+      dispatch(setPlayer(res.data.player));
     });
   };
 }
