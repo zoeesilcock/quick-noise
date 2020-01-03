@@ -20,7 +20,26 @@ it('should return the initial state', () => {
   expect(noiseReducer(undefined, {})).toEqual(initialState);
 });
 
-it('should set the state to whatever is sent to the setIsPlaying action', () => {
+// This test needs to be before the initNoisePlayer test, if it is run in a different order it will fail.
+it('does not dispatch setIsPlaying when the toggleNoise action is triggered if noisePlayer is null', () => {
+  const isPlaying = false;
+  const appMode = 'fake-mode';
+  const playerId = 'fake-player-id';
+  const store = mockStore({
+    appMode,
+    noise: { isPlaying },
+    remote: { playerId },
+  });
+  const expectedActions = [];
+
+  store.dispatch(toggleNoise());
+  const actions = store.getActions();
+
+  expect(mockToggleNoise).toHaveBeenCalledTimes(0);
+  expect(actions).toEqual(expectedActions);
+});
+
+it('should update state when the initNoisePlayer action is triggered', () => {
   const state = {
     noisePlayerInitialized: false,
     volume: '-9',

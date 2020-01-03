@@ -1,4 +1,5 @@
 let events = {};
+
 export const socketClient = jest.fn();
 export const socketOn = jest.fn();
 export const socketEmit = jest.fn();

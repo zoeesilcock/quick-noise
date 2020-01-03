@@ -16,6 +16,15 @@ it('renders without crashing', () => {
   ReactDOM.unmountComponentAtNode(div);
 });
 
+it('renders without crashing in playing mode', () => {
+  const { getByText } = render(
+    <NoiseToggle {...Object.assign({}, props, { isPlaying: true })} />
+  );
+
+  const button = getByText('Toggle noise');
+  expect(button.className).toEqual(expect.stringContaining('NoiseToggle-playing'));
+});
+
 it('calls the toggleNoise prop when clicked', () => {
   const toggleNoise = jest.fn();
   const { getByText } = render(
