@@ -11,10 +11,6 @@ const createPlayer = function(req, res) {
   models.Player.create({ name: "Player name", token: 'generate-unique-token-here' })
   .then(player => {
     return res.json({ player });
-  })
-  .catch(err => {
-    console.log(err);
-    return err;
   });
 };
 
@@ -35,12 +31,7 @@ const connectToPlayer = function(req, res) {
   });
 }
 
-const updatePlayer = function(req, res) {
-  console.log('Update player!');
-};
-
 exports.getPlayer = getPlayer;
 exports.createPlayer = createPlayer;
-exports.updatePlayer = updatePlayer;
 exports.getNewRemoteCode = getNewRemoteCode;
 exports.connectToPlayer = connectToPlayer;
