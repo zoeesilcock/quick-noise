@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { render, fireEvent } from '@testing-library/react'
 
 import RemoteConnectButton from '../RemoteConnectButton';
@@ -9,9 +8,7 @@ const props = {
 };
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<RemoteConnectButton {...props} />, div);
-  ReactDOM.unmountComponentAtNode(div);
+  render(<RemoteConnectButton {...props} />);
 });
 
 it('calls the setConnectShow prop when clicked', () => {

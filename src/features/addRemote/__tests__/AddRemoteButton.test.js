@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { render, fireEvent } from '@testing-library/react'
 
 import AddRemoteButton from '../AddRemoteButton';
@@ -10,9 +9,7 @@ const props = {
 };
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<AddRemoteButton {...props} />, div);
-  ReactDOM.unmountComponentAtNode(div);
+  render(<AddRemoteButton {...props} />);
 });
 
 it('calls the setConnectShow prop when clicked', () => {

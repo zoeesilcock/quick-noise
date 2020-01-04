@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { render, fireEvent } from '@testing-library/react'
 
 import AppModeToggle from '../AppModeToggle';
@@ -11,9 +10,7 @@ const props = {
 };
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<AppModeToggle {...props} />, div);
-  ReactDOM.unmountComponentAtNode(div);
+  render(<AppModeToggle {...props} />);
 });
 
 it('calls the setMode prop when player option is clicked', () => {

@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { render, fireEvent } from '@testing-library/react'
 
 import NoiseToggle from '../NoiseToggle';
@@ -11,9 +10,7 @@ const props = {
 };
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<NoiseToggle {...props} />, div);
-  ReactDOM.unmountComponentAtNode(div);
+  render(<NoiseToggle {...props} />);
 });
 
 it('renders without crashing in playing mode', () => {
