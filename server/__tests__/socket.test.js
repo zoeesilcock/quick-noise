@@ -2,6 +2,8 @@ import '../socket';
 import models from '../models';
 import { socket, ioEmit, socketEmit } from '../__mocks__/socket.io';
 
+jest.mock('http');
+
 jest.mock('../models/player', () => () => {
   const SequelizeMock = require('sequelize-mock');
   const dbMock = new SequelizeMock();
