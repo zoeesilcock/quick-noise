@@ -1,28 +1,56 @@
 version: '3.7'
 
 services:
-  web:
+  web-dev:
     build:
       context: .
-      dockerfile: Dockerfile
-    container_name: quicknoise-production
+      dockerfile: Dockerfile-development
+    container_name: quicknoise-web
+    command: ['npm', 'start']
+    stdin_open: true
+    tty: true
+    volumes:
+      - '.:/app'
+      - node-modules:/app/node_modules
+    ports:
+      - '3000:3000'
+    environment:
+      PORT: 3000
+      NODE_ENV: development
+      REACT_APP_API_PORT: 5000
+      CHOKIDAR_USEPOLLING: 1
+
+  api-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile-development
+    container_name: quicknoise-api
+    command: ['npm', 'run', 'start-api']
     stdin_open: true
     tty: true
     links:
-      - db
+      - db-dev
+    volumes:
+      - '.:/app'
+      - node-modules:/app/node_modules
     ports:
-      - '80:5000'
+      - '5000:5000'
     environment:
       PORT: 5000
-      NODE_ENV: production
-      DB_HOST: 'db'
-      DB_NAME: 'quicknoise'
+      NODE_ENV: development
+      DB_HOST: 'db-dev'
+      DB_NAME: 'quicknoise_dev'
       DB_USER: 'root'
       DB_PASS: 'example'
 
-  db:
+  db-dev:
     image: mariadb:latest
-    container_name: quicknoise-db-production
+    container_name: quicknoise-db
     environment:
       MYSQL_ROOT_PASSWORD: example
-      MYSQL_DATABASE: quicknoise
+      MYSQL_DATABASE: quicknoise_dev
+    ports:
+      - "3306:3306"
+
+volumes:
+  node-modules:

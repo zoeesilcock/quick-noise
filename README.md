@@ -5,7 +5,7 @@ A tool for playing noise from one device and controlling it from other devices. 
 
 ## Development
 
-The project uses react-scripts for the frontend development but also contains an node backend, both need to be started during development:
+The project uses react-scripts for the frontend development but also contains a node backend, both need to be started during development:
 ```
 npm start
 npm run start-api
@@ -13,7 +13,7 @@ npm run start-api
 
 Alternatively you can use Docker:
 ```
-docker-compose -f docker-compose-development.yml up
+docker-compose up
 ```
 
 Visit http://localhost:3000
