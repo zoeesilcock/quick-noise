@@ -19,8 +19,8 @@ a, a:visited {
 
 button {
   background-color: #333;
+  border: 1px solid #aaa;
   color: #fff;
-  border: none;
   padding: 10px;
   font-size: 16px;
 }
@@ -31,6 +31,10 @@ button:disabled {
 
 input {
   font-size: 24px;
+}
+
+h1#main-title {
+  margin-bottom: 40px;
 }
 
 .ReactModal__Overlay {
@@ -55,6 +59,7 @@ input {
   button {
     background-color: #ddd;
     color: #000;
+    border: 1px solid #555;
   }
 
   .ReactModal__Overlay {
