@@ -1,0 +1,12 @@
+.AutoToggle-body {
+  text-align: left;
+}
+
+.AutoToggle-checkbox {
+  margin: 10px;
+  transform: scale(1.5);
+}
+
+.AutoToggle-description {
+  font-size: 16px;
+}

@@ -7,7 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './App.css';
 import { fetchPlayer } from '../features/player/playerSlice';
-import { initNoisePlayer } from '../features/noise/noiseSlice';
+import { initNoisePlayer, toggleNoise } from '../features/noise/noiseSlice';
+import { AppModes } from '../features/appMode/appModeSlice';
 
 import HomePage from '../pages/HomePage';
 import SettingsPage from '../pages/SettingsPage';
@@ -20,24 +21,30 @@ const App = () => {
   const player = useSelector((state) => state.player);
   const remote = useSelector((state) => state.remote);
   const noisePlayerInitialized = useSelector((state) => state.noise.noisePlayerInitialized);
+  const appMode = useSelector((state) => state.appMode);
+  const autoToggle = useSelector((state) => state.autoToggle);
 
   useEffect(() => {
-    if (player && player.id && !player.fetching && !player.fetched) {
+    if (player && player.id && appMode === AppModes.PLAYER && !player.fetching && !player.fetched) {
       // Fetch own player.
       dispatch(fetchPlayer(player.id));
     }
 
-    if (remote && remote.playerId && (!player || (!player.fetching && !player.fetched))) {
+    if (remote && remote.playerId && appMode === AppModes.REMOTE && (!player || (!player.fetching && !player.fetched))) {
       // Fetch player used by remote.
       dispatch(fetchPlayer(remote.playerId));
     }
 
-    if (player && player.id && !noisePlayerInitialized) {
+    if (player && player.id && appMode === AppModes.PLAYER && !noisePlayerInitialized) {
       // Initialize noise player based on player.
       dispatch(initNoisePlayer(player.id));
-    } else if (remote && remote.playerId && !noisePlayerInitialized) {
+    } else if (remote && remote.playerId && appMode === AppModes.REMOTE && !noisePlayerInitialized) {
       // Initialize noise player based on remote.
       dispatch(initNoisePlayer(remote.playerId));
+
+      if (autoToggle) {
+        dispatch(toggleNoise());
+      }
     }
   });
 

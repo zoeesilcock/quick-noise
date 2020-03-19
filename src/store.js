@@ -4,6 +4,7 @@ import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage';
 
 import appModeReducer from './features/appMode/appModeSlice';
+import autoToggleReducer from './features/autoToggle/autoToggleSlice';
 import noiseReducer from './features/noise/noiseSlice';
 import addRemoteReducer from './features/addRemote/addRemoteSlice';
 import playerReducer from './features/player/playerSlice';
@@ -12,7 +13,7 @@ import remoteReducer from './features/remote/remoteSlice';
 const rootPersistConfig = {
   key: 'root',
   storage,
-  whitelist: ['appMode'],
+  whitelist: ['appMode', 'autoToggle'],
 }
 const playerPersistConfig = {
   key: 'player',
@@ -27,6 +28,7 @@ const remotePersistConfig = {
 
 export const reducer = combineReducers({
   appMode: appModeReducer,
+  autoToggle: autoToggleReducer,
   noise: noiseReducer,
   addRemote: addRemoteReducer,
   player: persistReducer(playerPersistConfig, playerReducer),

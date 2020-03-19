@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './AppModeToggle.css'
-import { AppModes } from './appModeSlice'
+import './AppModeToggle.css';
+import { AppModes } from './appModeSlice';
 
 class AppModeToggle extends React.Component {
   handlePlayerChange = () => {
@@ -31,7 +31,6 @@ class AppModeToggle extends React.Component {
             Use this option on the device that will be playing the noise.
           </p>
         </div>
-        <br />
         <div>
           <input
             className="AppModeToggle-radio"
