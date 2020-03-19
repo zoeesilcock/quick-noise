@@ -11,13 +11,22 @@ const saveVolume = _.throttle((playerId, volume) => {
   });
 }, 500, { trailing: true });
 
+const saveIsPlaying = (playerId, isPlaying) => {
+  models.Player.findByPk(playerId)
+  .then(player => {
+    player.update({ isPlaying });
+  });
+};
+
 io.on('connection', (socket) => {
   const playerId = socket.handshake.query.playerId;
 
   socket.join(playerId);
 
-  socket.on('toggle noise', () => {
+  socket.on('toggle noise', (isPlaying) => {
     io.to(playerId).emit('toggle noise');
+
+    saveIsPlaying(playerId, !isPlaying);
   });
 
   socket.on('set volume', (volume) => {

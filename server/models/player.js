@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     token: DataTypes.STRING,
     new_remote_code: DataTypes.STRING,
     volume: DataTypes.STRING,
+    isPlaying: DataTypes.BOOLEAN,
   }, {});
   Player.associate = function(models) {
     // associations can be defined here

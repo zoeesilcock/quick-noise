@@ -27,7 +27,7 @@ export default class NoisePlayer {
     if (appMode === AppModes.PLAYER) {
       this.togglePlayer(isPlaying);
     } else {
-      this.toggleRemote(playerId);
+      this.toggleRemote(playerId, isPlaying);
     }
   }
 
@@ -41,10 +41,10 @@ export default class NoisePlayer {
     }
   }
 
-  toggleRemote(playerId) {
+  toggleRemote(playerId, isPlaying) {
     this.initNoiseSocket(playerId);
 
-    this.noiseSocket.socket.emit('toggle noise');
+    this.noiseSocket.socket.emit('toggle noise', isPlaying);
   }
 
   setVolume(volume, appMode, playerId) {

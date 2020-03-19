@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { createSlice } from 'redux-starter-kit';
-import { setNoiseVolume } from '../noise/noiseSlice';
+import { setNoiseVolume, setIsPlaying } from '../noise/noiseSlice';
 
 const playerSlice = createSlice({
   name: 'player',
@@ -34,6 +34,7 @@ export function fetchPlayer(playerId) {
 
       if (res.data.player !== null) {
         dispatch(setNoiseVolume(res.data.player.volume));
+        dispatch(setIsPlaying(res.data.player.isPlaying));
       }
     });
   };
