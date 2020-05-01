@@ -1,0 +1,44 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: server
+spec:
+  type: NodePort
+  ports:
+  - port: 5000
+  selector:
+    app: server
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: server
+  template:
+    metadata:
+      labels:
+        app: server
+    spec:
+      containers:
+      - name: quicknoise
+        image: quicknoise:0.1
+        ports:
+        - containerPort: 5000
+        env:
+        - name: PORT
+          value: "5000"
+        - name: NODE_ENV
+          value: production
+        - name: DB_HOST
+          value: mariadb
+        - name: DB_NAME
+          value: quicknoise
+        - name: DB_USER
+          value: root
+        # Use a secret for this.
+        - name: DB_PASS
+          value: example
