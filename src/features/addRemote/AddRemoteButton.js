@@ -10,7 +10,7 @@ class AddRemoteButton extends React.Component {
     return (
       <div>
         <button onClick={this.handleClick} disabled={this.props.isFetching}>
-          Add remote
+          Add a remote
         </button>
       </div>
     );

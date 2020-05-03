@@ -43,7 +43,7 @@ class AppModeToggle extends React.Component {
           />
           <label htmlFor="appModeRemote">Remote</label>
           <p className="AppModeToggle-description">
-            Use this option on any device you want to remote controll the player from.
+            Use this option on any device you want to remote control the player from.
           </p>
         </div>
       </div>
