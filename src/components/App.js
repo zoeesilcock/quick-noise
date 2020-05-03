@@ -6,7 +6,7 @@ import { faTimes, faCog } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './App.css';
-import { fetchPlayer } from '../features/player/playerSlice';
+import { fetchPlayer, createPlayer } from '../features/player/playerSlice';
 import { initNoisePlayer, toggleNoise } from '../features/noise/noiseSlice';
 import { AppModes } from '../features/appMode/appModeSlice';
 
@@ -28,6 +28,9 @@ const App = () => {
     if (player && player.id && appMode === AppModes.PLAYER && !player.fetching && !player.fetched) {
       // Fetch own player.
       dispatch(fetchPlayer(player.id));
+    } else if ((!player || !player.id) && appMode === AppModes.PLAYER) {
+      console.log('Create player');
+      dispatch(createPlayer());
     }
 
     if (remote && remote.playerId && appMode === AppModes.REMOTE && (!player || (!player.fetching && !player.fetched))) {

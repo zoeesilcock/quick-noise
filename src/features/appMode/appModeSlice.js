@@ -7,7 +7,7 @@ export const AppModes = {
 
 const appModeSlice = createSlice({
   name: 'appMode',
-  initialState: AppModes.REMOTE,
+  initialState: AppModes.PLAYER,
   reducers: {
     toggleMode(state) {
       return state === AppModes.PLAYER ? AppModes.REMOTE : AppModes.PLAYER;
