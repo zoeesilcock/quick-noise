@@ -1,8 +1,11 @@
 const _ = require('lodash');
 
+const app = require('./app');
 const http = require('./server');
 const io = require('socket.io')(http);
 const models = require('./models');
+
+app.io = io;
 
 const saveVolume = _.throttle((playerId, volume) => {
   models.Player.findByPk(playerId)

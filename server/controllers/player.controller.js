@@ -1,4 +1,4 @@
-var models = require('../models');
+const models = require('../models');
 
 const getPlayer = function(req, res) {
   models.Player.findByPk(req.params.id)
@@ -31,7 +31,23 @@ const connectToPlayer = function(req, res) {
   });
 }
 
+const toggleNoise = function(req, res) {
+  const playerId = req.params.id;
+
+  models.Player.findByPk(playerId)
+  .then(player => {
+    const isPlaying = !player.isPlaying;
+
+    req.app.io.to(playerId).emit('toggle noise');
+
+    player.update({ isPlaying }).then(() => {
+      return res.json({ id: playerId, isPlaying });
+    });
+  });
+}
+
 exports.getPlayer = getPlayer;
 exports.createPlayer = createPlayer;
 exports.getNewRemoteCode = getNewRemoteCode;
 exports.connectToPlayer = connectToPlayer;
+exports.toggleNoise = toggleNoise;
