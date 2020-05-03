@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile-development
     container_name: quicknoise-web
-    command: ['npm', 'start']
+    command: ['sh', '-c', 'cd /app/server && sleep 2 && npx sequelize-cli db:migrate && npm start']
     stdin_open: true
     tty: true
     volumes:

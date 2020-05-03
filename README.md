@@ -30,12 +30,6 @@ Deploy
 kubectl -n quicknoise apply -f k8s/
 ```
 
-Migrate database on first run (can we automate this?)
-```
-cd server
-npx sequelize-cli db:migrate
-```
-
 
 ## Tests
 

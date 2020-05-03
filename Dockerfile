@@ -21,7 +21,8 @@ COPY package.json /app/package.json
 RUN npm install --production --silent --no-optional && npm cache clean --force
 
 COPY server /app/server
+COPY launch.sh /app/launch.sh
 COPY --from=build /app/build /app/build
 
 EXPOSE 80
-CMD ["node", "server"]
+CMD ["sh", "launch.sh"]
