@@ -16,13 +16,15 @@ Alternatively you can use Docker:
 docker-compose up
 ```
 
-Visit http://localhost:3000
+Application is on port 3000: http://localhost:3000
+API is on port 5000, example: http://localhost:5000/api/hello
 
 
 ## Production
 Build an image
 ```
 docker image build -t quicknoise:<version> .
+docker tag <image> quicknois:latest
 ```
 
 Deploy

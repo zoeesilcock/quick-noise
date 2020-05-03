@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: quicknoise
-        image: quicknoise:0.1
+        image: quicknoise:latest
         ports:
         - containerPort: 5000
         env:
